@@ -1,5 +1,6 @@
 package com.nowcoder.community.controller;
 
+import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,6 +112,16 @@ public class AlphaController {
         return list;
     }
 
-    //cookie实例
+    //ajax实例
+    @RequestMapping(path = "/ajax", method = RequestMethod.POST)
+    @ResponseBody
+    public String testAjax(String name, int age) {
+        Map<String, Object> map = new HashMap<>();
+        System.out.println(name);
+        System.out.println(age);
+        map.put("name", name);
+        map.put("age", age);
+        return CommunityUtil.getJSONString(0, "操作成功！", map);
+    }
 
 }
